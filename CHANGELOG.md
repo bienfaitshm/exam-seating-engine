@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/bienfaitshm/exam-seating-engine/compare/v1.0.1...v1.0.2) (2026-03-07)
+
+
+### Bug Fixes
+
+* améliorer la configuration du pipeline CI/CD pour la publication NPM ([7037307](https://github.com/bienfaitshm/exam-seating-engine/commit/703730760657296fb767356a1f428ea5a6e6111f))
+
 ## [1.0.1](https://github.com/bienfaitshm/exam-seating-engine/compare/v1.0.0...v1.0.1) (2026-03-07)
 
 
