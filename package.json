@@ -4,6 +4,10 @@
   "author": "bienfait shomari",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "private": false,
   "devDependencies": {
     "@types/node": "^22.10.2",
     "@vitest/coverage-v8": "^4.0.18",
