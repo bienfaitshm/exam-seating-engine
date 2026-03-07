@@ -6,12 +6,10 @@ on:
   pull_request:
     branches: [main, master]
 
-# Sécurité minimale : On limite les permissions par défaut à la lecture seule
 permissions:
   contents: read
 
 jobs:
-  # Job 1: Validation Technique (Exécution en parallèle)
   quality-gate:
     name: Quality & Unit Tests (Node ${{ matrix.node }})
     runs-on: ubuntu-latest
@@ -38,7 +36,6 @@ jobs:
       - name: 🧪 Run Tests
         run: bun run test --coverage
 
-  # Job 2: Publication & Release
   release:
     name: Semantic Release & NPM Publish
     needs: quality-gate
@@ -60,6 +57,13 @@ jobs:
       - name: ⚡ Setup Bun
         uses: oven-sh/setup-bun@v2
 
+      # Étape CRUCIALE : Configurer Node pour NPM avec le token
+      - name: 🛠️ Setup Node.js for NPM
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+
       - name: 📦 Install Dependencies
         run: bun install --frozen-lockfile
 
@@ -69,9 +73,13 @@ jobs:
       - name: 🚀 Semantic Release
         uses: cycjimmy/semantic-release-action@v4
         with:
+          # On s'assure que le plugin npm est présent et actif
           extra_plugins: |
             @semantic-release/changelog
             @semantic-release/git
+            @semantic-release/npm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # On définit aussi NODE_AUTH_TOKEN pour setup-node
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
