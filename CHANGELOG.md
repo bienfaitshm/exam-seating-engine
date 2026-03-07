@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/bienfaitshm/exam-seating-engine/compare/v1.0.0...v1.0.1) (2026-03-07)
+
+
+### Bug Fixes
+
+* corriger la mise en forme de la section Licence dans le README ([02c2141](https://github.com/bienfaitshm/exam-seating-engine/commit/02c21416d094b8d81aa2c25d4cdf07629f1be5a9))
+
 # 1.0.0 (2026-03-07)
 
 
