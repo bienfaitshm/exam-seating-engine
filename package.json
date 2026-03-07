@@ -6,6 +6,7 @@
   "module": "./dist/index.js",
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "@vitest/coverage-v8": "^4.0.18",
     "bunchee": "^6.9.4",
     "tsdx": "^2.0.0",
     "typescript": "^5.7.2",
