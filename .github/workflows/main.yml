@@ -16,15 +16,29 @@ jobs:
         node: ["20", "22"]
         os: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
       - name: Install dependencies
         run: bun install
-      - name: Lint & Typecheck
-        run: |
-          bun run lint
-          bun run typecheck
-      - name: Run Tests
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Type check
+        run: bun run typecheck
+
+      - name: Test
         run: bun run test
 
   # Étape 2 : Publication (Seulement sur push main/master)
@@ -39,11 +53,15 @@ jobs:
         with:
           fetch-depth: 0 # Requis pour l'analyse de l'historique des commits
 
-      - name: Setup Node.js
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Setup Node.js ${{ matrix.node }}
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          registry-url: "https://registry.npmjs.org"
+          node-version: ${{ matrix.node }}
 
       - name: Install dependencies
         run: bun install
