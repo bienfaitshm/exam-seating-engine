@@ -123,6 +123,7 @@ export class ExamOptimizer {
     const occupancyRate = students.length / room.maxCapacity;
 
     return {
+      roomId: room.id,
       roomName: room.name,
       seatingPlan,
       studentCount: students.length,

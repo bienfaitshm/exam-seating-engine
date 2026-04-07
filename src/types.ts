@@ -17,6 +17,7 @@ export interface OccupiedSeat {
 }
 
 export interface RoomReport {
+  roomId: number | string;
   roomName: string;
   seatingPlan: OccupiedSeat[];
   occupancyRate: number;
