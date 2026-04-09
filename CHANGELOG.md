@@ -1,3 +1,14 @@
+## [1.0.3](https://github.com/bienfaitshm/exam-seating-engine/compare/v1.0.2...v1.0.3) (2026-04-09)
+
+
+### Bug Fixes
+
+* ajouter l'identifiant de la salle dans le rapport de salle ([d461e3a](https://github.com/bienfaitshm/exam-seating-engine/commit/d461e3a000dd4e34ce2c73fc8d6672bfd5137704))
+* ajouter la gestion des colonnes dans les salles et améliorer la documentation ([4009211](https://github.com/bienfaitshm/exam-seating-engine/commit/400921129551d5dfe48d3b52220f272ea82979c9))
+* désactiver l'utilisation de NPM dans la configuration de la CI/CD ([463d24b](https://github.com/bienfaitshm/exam-seating-engine/commit/463d24be0dd71c20d5d393db3b36dfd0423fb9a4))
+* mettre à jour la version à 1.0.3 dans package.json ([da580fd](https://github.com/bienfaitshm/exam-seating-engine/commit/da580fd4802fbd9141f602f5d5f635e2b721e695))
+* supprimer la publication NPM dans le pipeline CI/CD et mettre à jour la configuration de semantic-release ([932582a](https://github.com/bienfaitshm/exam-seating-engine/commit/932582ae77a5cd80d29a6eeff95903526337e65f))
+
 ## [1.0.2](https://github.com/bienfaitshm/exam-seating-engine/compare/v1.0.1...v1.0.2) (2026-03-07)
 
 
