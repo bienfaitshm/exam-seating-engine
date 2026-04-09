@@ -137,8 +137,6 @@ export class ExamOptimizer {
       }
     }
 
-    // Si on arrive ici, le ratio de confort n'est pas tenable.
-    // On vérifie si c'est possible en utilisant 100% de la capacité brute.
     const totalRawCapacity = selectedRooms.reduce((sum, r) => sum + r.maxCapacity, 0);
 
     if (totalRawCapacity < totalStudentsNeeded) {
@@ -147,8 +145,6 @@ export class ExamOptimizer {
       );
     }
 
-    // Si on est entre la capacité de confort et la capacité brute, 
-    // on renvoie quand même les salles, l'allocateur gérera le surplus.
     return selectedRooms;
   }
 
