@@ -1,6 +1,6 @@
 {
   "name": "exam-seating-engine",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "bienfait shomari",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
