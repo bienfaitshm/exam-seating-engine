@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/bienfaitshm/exam-seating-engine/compare/v1.0.3...v1.0.4) (2026-04-09)
+
+
+### Bug Fixes
+
+* supprimer les commentaires inutiles concernant le ratio de confort dans la méthode selectOptimalRooms ([de31f29](https://github.com/bienfaitshm/exam-seating-engine/commit/de31f295b9efd4781d72b46a0bac41fa7e57f721))
+
 ## [1.0.3](https://github.com/bienfaitshm/exam-seating-engine/compare/v1.0.2...v1.0.3) (2026-04-09)
 
 
