@@ -41,7 +41,7 @@ const students: Student[] = [
 ];
 
 const rooms: Room[] = [
-    { id: 'A1', name: 'Grand Hall', maxCapacity: 100 },
+    { id: 'A1', name: 'Grand Hall', maxCapacity: 100, columns: 5 },
     { id: 'B2', name: 'Small Lab', maxCapacity: 20 }
 ];
 
@@ -99,6 +99,8 @@ $$Column = index \pmod{columns}$$
 
 * Node.js 18+
 * npm or yarn
+
+We use **Vitest** for unit testing. Every new feature must:
 
 ### Setup
 

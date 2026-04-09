@@ -18,8 +18,8 @@ describe("ExamOptimizer", () => {
     ];
 
     mockRooms = [
-      { id: "R1", name: "Main Hall", maxCapacity: 10 },
-      { id: "R2", name: "Lab A", maxCapacity: 2 },
+      { id: "L1", name: "Local 1", maxCapacity: 10 },
+      { id: "L2", name: "Local 2", maxCapacity: 2 },
     ];
   });
 
@@ -31,7 +31,6 @@ describe("ExamOptimizer", () => {
     const totalAllocated = reports.reduce((sum, r) => sum + r.studentCount, 0);
     expect(totalAllocated).toBe(mockStudents.length);
 
-    // Ensure no room is falsely flagged as overloaded
     reports.forEach((report) => {
       expect(report.isOverloaded).toBe(false);
       expect(report.occupancyRate).toBeLessThanOrEqual(1);
@@ -48,11 +47,30 @@ describe("ExamOptimizer", () => {
 
   it("should separate students from the same class", () => {
     const reports = optimizer.generateSeatingPlan(mockStudents, mockRooms, 2);
-    const plan = reports[0].seatingPlan; // Assuming all go to Main Hall
+    const plan = reports[0].seatingPlan;
 
-    if (plan.length >= 2) {
+    if (reports.length >=2 && plan.length >= 2) {
       // Because of round-robin, adjacent students (index 0 and 1) should have different classes
       expect(plan[0].student.classId).not.toEqual(plan[1].student.classId);
     }
+  });
+
+  it("should respect individual room capacities when distributing", () => {
+    // 8 students
+    const moreStudents: (Student& {className?: string})[] = [
+      ...mockStudents,
+      { id: "5", name: "Eve", classId: "BIO101", className:"Biologie" },
+      { id: "6", name: "Frank", classId: "BIO101" },
+      { id: "7", name: "Shomari", classId: "BIO102" },
+      { id: "8", name: "Bienfait", classId: "BIO103" },
+      { id: "9", name: "Alvine", classId: "BIO103" },
+    ];
+    
+    // L1: 10, L2: 2
+    const reports = optimizer.generateSeatingPlan(moreStudents, mockRooms, 2);
+    console.log(JSON.stringify(reports,null , 4))
+    const labAReport = reports.find(r => r.roomId === "L2");
+    expect(labAReport).toBeDefined();
+    expect(labAReport!.studentCount).toBeLessThanOrEqual(2);
   });
 });

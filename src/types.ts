@@ -8,18 +8,20 @@ export interface Room {
   id: string;
   name: string;
   maxCapacity: number;
+  columns?: number; 
 }
 
-export interface OccupiedSeat {
+export interface OccupiedSeat<T> {
   row: number;
   column: number;
-  student: Student;
+  student: Student & T;
 }
 
-export interface RoomReport {
-  roomId: number | string;
+export interface RoomReport<T> {
+  roomId: string;
   roomName: string;
-  seatingPlan: OccupiedSeat[];
+  maxCapacity:number;
+  seatingPlan: OccupiedSeat<T>[];
   occupancyRate: number;
   isOverloaded: boolean;
   studentCount: number;
