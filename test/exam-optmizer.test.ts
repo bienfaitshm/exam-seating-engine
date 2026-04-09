@@ -68,7 +68,6 @@ describe("ExamOptimizer", () => {
     
     // L1: 10, L2: 2
     const reports = optimizer.generateSeatingPlan(moreStudents, mockRooms, 2);
-    console.log(JSON.stringify(reports,null , 4))
     const labAReport = reports.find(r => r.roomId === "L2");
     expect(labAReport).toBeDefined();
     expect(labAReport!.studentCount).toBeLessThanOrEqual(2);

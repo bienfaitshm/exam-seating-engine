@@ -37,7 +37,7 @@ jobs:
         run: bun run test --coverage
 
   release:
-    name: Semantic Release & NPM Publish
+    name: Semantic Release
     needs: quality-gate
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
@@ -58,11 +58,11 @@ jobs:
         uses: oven-sh/setup-bun@v2
 
       # Étape CRUCIALE : Configurer Node pour NPM avec le token
-      - name: 🛠️ Setup Node.js for NPM
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          registry-url: "https://registry.npmjs.org"
+      # - name: 🛠️ Setup Node.js for NPM
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: "22"
+      #     registry-url: "https://registry.npmjs.org"
 
       - name: 📦 Install Dependencies
         run: bun install --frozen-lockfile
@@ -75,13 +75,13 @@ jobs:
         with:
           # On s'assure que le plugin npm est présent et actif
           extra_plugins: |
-            @semantic-release/changelog
+            @semantic-release/changelog@6.0.0
             @semantic-release/git
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           # On définit aussi NODE_AUTH_TOKEN pour setup-node
-          # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
           # @semantic-release/npm
